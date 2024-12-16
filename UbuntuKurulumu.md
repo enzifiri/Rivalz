@@ -36,7 +36,7 @@ Açılan dosyaya aşağıdaki kod bloğunun en üstünde değişiklik yaparak ya
 
 # Uzak masaüstü için kullanıcı ve şifre değişkenlerini tanımlayın
 # Root kullanmayın
-USER="KULLANICI ADI"
+USER="KULLANICI_ADI"
 PASSWORD="ŞİFRE"
 
 # Paket listesini günceller
@@ -67,12 +67,6 @@ sudo systemctl enable xrdp
 # Rivalz.ai rClient için gereklilikleri kurar
 sudo apt install -y wget
 
-# Rivalz.ai rClient AppImage'ı indirir
-wget https://api.rivalz.ai/fragmentz/clients/rClient-latest.AppImage -O rClient-latest.AppImage
-
-# AppImage'ı çalıştırılabilir hale getirir
-chmod +x rClient-latest.AppImage
-
 # Eğer mevcut değilse Belgeler dizinini oluşturur
 sudo -u $USER mkdir -p /home/$USER/Documents
 
@@ -82,8 +76,16 @@ sudo mv rClient-latest.AppImage /home/$USER/Documents/rClient-latest.AppImage
 # rClient'in sahibini belirtilen kullanıcıyla değiştirir
 sudo chown $USER:$USER /home/$USER/Documents/rClient-latest.AppImage
 
-echo "Kurulum tamamlandi. GNOME Desktop, xrdp ve Rivalz.ai rClient kuruldu. Lutfen VPSFix.sh dosyasini calistiriniz."
+# Google Chrome'u kurar
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo apt update
+sudo apt install gdebi -y
+sudo gdebi -n google-chrome-stable_current_amd64.deb
 
+# Geçici dosyayı kaldırır
+rm -f google-chrome-stable_current_amd64.deb
+
+echo "Kurulum tamamlandi. GNOME Desktop, xrdp, Google Chrome ve Rivalz.ai rClient kuruldu. Lutfen VPSFix.sh dosyasini calistiriniz."
 ```
 
 ``` CTRL + X ``` tuşlarına ve ```Y ``` tuşuna basalım, ardından ```ENTER``` tuşuna basalım.
